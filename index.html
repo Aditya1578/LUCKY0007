@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>lucky Bhai - Cricket Analysis</title>
+
+<!-- ================= META PIXEL ================= -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];
+t=b.createElement(e);
+t.async=!0;
+t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1754039079185072');
+fbq('track', 'PageView');
+</script>
+
+<noscript>
+<img height="1" width="1"
+style="display:none"
+src="https://www.facebook.com/tr?id=1754039079185072&ev=PageView&noscript=1"/>
+</noscript>
+<!-- =============== END META PIXEL =============== -->
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#07112f;
+    color:white;
+    display:flex;
+    justify-content:center;
+}
+
+.page{
+    width:min(100%,920px);
+    min-height:100vh;
+    padding:28px;
+    background:#07112f;
+}
+
+.outer{
+    min-height:calc(100vh - 56px);
+    border:7px solid #f6c744;
+    border-radius:88px;
+    padding:70px 58px 55px;
+    overflow:hidden;
+}
+
+
+/* ================= TITLE ================= */
+
+h1{
+    margin:0;
+    text-align:center;
+    color:#f6c744;
+    font-size:clamp(48px,8vw,86px);
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.subtitle{
+    text-align:center;
+    margin:28px 0 62px;
+    color:#b8c8ef;
+    font-size:clamp(15px,2.4vw,25px);
+    font-weight:700;
+    letter-spacing:7px;
+}
+
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+    max-width:760px;
+    margin:0 auto 52px;
+    padding:42px 40px;
+    border-radius:46px;
+    background:linear-gradient(
+        145deg,
+        #101f4e,
+        #102452
+    );
+
+    display:grid;
+    grid-template-columns:210px 1fr;
+    gap:48px;
+    align-items:center;
+}
+
+
+/* LOGO */
+
+.logo{
+    width:205px;
+    height:205px;
+
+    border:7px solid #f6c744;
+    border-radius:44px;
+
+    display:grid;
+    place-items:center;
+
+    background:
+    radial-gradient(
+        circle at 50% 45%,
+        #5e5e5e 0 8%,
+        #171717 35%,
+        #050505 72%
+    );
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+    text-align:center;
+    padding:12px;
+}
+
+.logo span{
+    font-family:Georgia,serif;
+    font-size:25px;
+    font-weight:900;
+    color:#eee;
+
+    text-shadow:
+    2px 2px 3px #000;
+
+    line-height:1.05;
+}
+
+
+/* BADGES */
+
+.badges{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.badge{
+    min-height:90px;
+
+    border-radius:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    font-size:clamp(22px,3vw,34px);
+    font-weight:900;
+
+    padding:18px 24px;
+}
+
+.elite{
+    background:#3159f4;
+}
+
+.king{
+    background:#ffcb0a;
+    color:#050505;
+}
+
+
+/* ================= JOIN BUTTON ================= */
+
+.join{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    min-height:140px;
+
+    border:7px solid #f6c744;
+    border-radius:52px;
+
+    background:#3159f4;
+    color:white;
+
+    text-decoration:none;
+
+    font-size:clamp(28px,5vw,48px);
+    font-weight:900;
+
+    margin-bottom:38px;
+
+    transition:
+    transform .15s ease,
+    filter .15s ease;
+}
+
+.join:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+
+/* ================= FEATURES ================= */
+
+.feature{
+    min-height:120px;
+
+    border-radius:42px;
+
+    background:#102452;
+
+    margin:34px 0;
+
+    display:flex;
+    align-items:center;
+
+    padding:24px 48px;
+
+    font-size:clamp(24px,4vw,38px);
+    font-weight:900;
+}
+
+.feature .icon{
+    width:66px;
+    flex:0 0 66px;
+
+    font-size:46px;
+
+    margin-right:24px;
+}
+
+
+/* ================= COUNTDOWN ================= */
+
+.redirect{
+    text-align:center;
+
+    font-size:clamp(28px,5vw,46px);
+
+    font-weight:800;
+
+    margin:58px 0 48px;
+}
+
+.seconds{
+    color:#22d8f5;
+}
+
+
+/* ================= DISCLAIMER ================= */
+
+.disclaimer{
+    text-align:center;
+
+    color:#6679a9;
+
+    font-size:18px;
+
+    letter-spacing:7px;
+
+    font-weight:600;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    .page{
+        padding:12px;
+    }
+
+    .outer{
+
+        border-width:4px;
+
+        border-radius:45px;
+
+        padding:44px 20px 34px;
+
+        min-height:calc(100vh - 24px);
+    }
+
+    .subtitle{
+
+        letter-spacing:4px;
+
+        margin-bottom:40px;
+    }
+
+    .profile-card{
+
+        grid-template-columns:1fr;
+
+        justify-items:center;
+
+        padding:28px 18px;
+
+        gap:28px;
+
+        border-radius:34px;
+    }
+
+    .logo{
+
+        width:175px;
+        height:175px;
+    }
+
+    .badges{
+        width:100%;
+    }
+
+    .badge{
+        min-height:76px;
+    }
+
+    .join{
+
+        min-height:105px;
+
+        border-width:4px;
+
+        border-radius:36px;
+    }
+
+    .feature{
+
+        min-height:95px;
+
+        border-radius:30px;
+
+        padding:20px 24px;
+    }
+
+    .feature .icon{
+
+        width:45px;
+
+        flex-basis:45px;
+
+        margin-right:12px;
+
+        font-size:34px;
+    }
+
+    .disclaimer{
+
+        font-size:12px;
+
+        letter-spacing:4px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+<section class="outer">
+
+
+<!-- ================= HEADER ================= -->
+
+<h1>LUCKY BHAI</h1>
+
+<div class="subtitle">
+THE ULTIMATE CRICKET ANALYST
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div class="profile-card">
+
+
+<div class="logo">
+<img src=https://drive.google.com/file/d/1bQZIeOxLUtNn3pkGDkS18LYJ-v0NVGHg/view?usp=drivesdk
+
+</div>
+
+
+<div class="badges">
+
+<div class="badge elite">
+🏆 THE ELITE
+</div>
+
+<div class="badge king">
+KING OF MARKET
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= JOIN CHANNEL ================= -->
+
+<!-- IMPORTANT:
+Replace YOUR_CHANNEL with your real Telegram username/link
+-->
+
+<a
+class="join"
+href="https://t.me/https://t.me/+1wlcbk7hh7UxOWVl"
+target="_blank"
+rel="noopener"
+onclick="trackTelegramJoin()">
+
+✈️&nbsp; JOIN CHANNEL
+
+</a>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<div class="feature">
+
+<span class="icon">
+✓
+</span>
+
+<span>
+STRATEGIC ANALYSIS
+</span>
+
+</div>
+
+
+<div class="feature">
+
+<span class="icon">
+⚡
+</span>
+
+<span>
+INSTANT UPDATES
+</span>
+
+</div>
+
+
+
+<!-- ================= COUNTDOWN ================= -->
+
+<div class="redirect">
+
+Redirecting in
+
+<span
+class="seconds"
+id="countdown">
+15
+</span>
+
+s
+
+</div>
+
+
+
+<!-- ================= DISCLAIMER ================= -->
+
+<div class="disclaimer">
+
+FOR ENTERTAINMENT PURPOSES ONLY
+
+</div>
+
+
+</section>
+
+</div>
+
+
+
+<script>
+
+/* =================================================
+   TELEGRAM JOIN PIXEL EVENT
+   ================================================= */
+
+function trackTelegramJoin(){
+
+    if(typeof fbq === 'function'){
+
+        fbq(
+            'track',
+            'Lead',
+            {
+                content_name:
+                'Telegram Channel Join',
+
+                content_category:
+                'Cricket Analysis'
+            }
+        );
+
+
+        fbq(
+            'trackCustom',
+            'TelegramJoinClick',
+            {
+                channel_name:
+                'Sagar Bhai'
+            }
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   COUNTDOWN
+   ================================================= */
+
+let seconds = 15;
+
+const countdown =
+document.getElementById('countdown');
+
+
+setInterval(function(){
+
+    seconds--;
+
+    if(seconds < 0){
+
+        seconds = 15;
+
+    }
+
+    countdown.textContent =
+    seconds;
+
+},1000);
+
+</script>
+
+
+</body>
+</html>
